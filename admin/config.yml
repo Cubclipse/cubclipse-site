@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: TVOJE_GITHUB_JMENO/cubclipse-site   # ← uprav na skutečný název tvého GitHub repozitáře
+  repo: Cubclipse/cubclipse-site   # ← uprav na skutečný název tvého GitHub repozitáře
   branch: main
 
 media_folder: "assets/img/products"
