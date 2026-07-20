@@ -1,0 +1,46 @@
+backend:
+  name: github
+  repo: TVOJE_GITHUB_JMENO/cubclipse-site   # ← uprav na skutečný název tvého GitHub repozitáře
+  branch: main
+
+media_folder: "assets/img/products"
+public_folder: "/assets/img/products"
+
+collections:
+  - name: "products"
+    label: "Produkty"
+    files:
+      - name: "catalog"
+        label: "Katalog produktů"
+        file: "data/products.json"
+        fields:
+          - label: "Produkty"
+            name: "products"
+            widget: "list"
+            summary: "{{name}} ({{category}})"
+            fields:
+              - { label: "ID (bez mezer, jen malá písmena a pomlčky, např. burrow-tote)", name: "id", widget: "string" }
+              - { label: "Název produktu", name: "name", widget: "string" }
+              - label: "Kategorie"
+                name: "category"
+                widget: "select"
+                options: ["totes", "mugs", "stickers", "hoodies"]
+              - { label: "Cena (USD)", name: "price", widget: "number", required: false }
+              - { label: "Zatím jen \"Coming Soon\"?", name: "comingSoon", widget: "boolean", default: false }
+              - { label: "Hlavní fotka", name: "image", widget: "image", required: false }
+              - label: "Galerie (další fotky)"
+                name: "gallery"
+                widget: "list"
+                required: false
+                field: { label: "Fotka", name: "src", widget: "image" }
+              - label: "Barevné varianty"
+                name: "colors"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Název barvy", name: "name", widget: "string" }
+                  - { label: "Fotka pro tuto barvu", name: "image", widget: "image" }
+              - { label: "Popis produktu", name: "description", widget: "text" }
+              - { label: "Materiál a péče", name: "material", widget: "text", required: false }
+              - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
+              - { label: "Odkaz na Etsy listing", name: "etsyUrl", widget: "string", required: false }

@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": "burrow-tote",
+      "name": "The Burrow Tote",
+      "category": "totes",
+      "price": 32,
+      "comingSoon": false,
+      "image": "/assets/img/products/tote.webp",
+      "gallery": [
+        { "src": "/assets/img/products/tote.webp" }
+      ],
+      "colors": [
+        { "name": "Onyx Black", "image": "/assets/img/products/tote.webp" }
+      ],
+      "description": "Heavyweight cotton canvas, screen-printed by hand with our den's own line art. Room for a laptop, a library book, and whatever else you're carrying today. \"Born to Howl\" — for the ones who mean it quietly.",
+      "material": "12oz brushed cotton canvas, reinforced stitched handles, interior flat bottom. Spot clean or gentle machine wash, lay flat to dry.",
+      "dimensions": "15.5\" W x 16\" H, 11\" handle drop. Fits a 13–14\" laptop and daily carry with room to spare.",
+      "etsyUrl": ""
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Mugs — Cubclipse</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../assets/img/logo-black.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<meta property="og:title" content="Mugs — Cubclipse">
+<meta property="og:description" content="Cubclipse mugs, coming soon.">
+<meta property="og:type" content="website">
+
+</head>
+<body>
+<nav id="mainNav">
+  <div class="nav-logo">
+    <a href="../index.html" style="display:flex;align-items:center;gap:10px;">
+      <img src="../assets/img/logo-black.webp" alt="Cubclipse">
+      <span>Cubclipse</span>
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="../collections/totes.html">Totes</a>
+    <a href="../collections/mugs.html">Mugs</a>
+    <a href="../collections/stickers.html">Stickers</a>
+    <a href="../index.html#story">Our Den</a>
+  </div>
+  <button class="nav-bag" id="navBag">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+    <span>Bag (<span id="bagCount">0</span>)</span>
+  </button>
+</nav>
+<div id="cartOverlay"></div>
+<aside id="cartDrawer">
+  <div class="cart-head">
+    <h3>Your Den</h3>
+    <button class="cart-close" id="cartClose" aria-label="Close cart">×</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-subtotal"><span>Subtotal</span><span class="amt" id="cartSubtotal">$0</span></div>
+    <button class="btn btn-gold" style="width:100%; justify-content:center;" id="checkoutBtn">Checkout</button>
+    <p class="cart-note">Shipping &amp; taxes calculated at checkout. Each product also links directly to its official Etsy listing for secure checkout.</p>
+  </div>
+</aside>
+<div id="toast">Added to your den ✓</div>
+
+<section class="page-hero">
+  <span class="eyebrow on-dark">Coming Soon</span>
+  <h1>Mugs</h1>
+  <div class="breadcrumb"><a href="../index.html">Home</a> / Mugs</div>
+</section>
+<section class="collections">
+  <div class="wrap">
+    <div class="product-grid" id="collectionGrid" style="display:none;"><!-- filled by catalog.js when mugs go live --></div>
+  </div>
+</section>
+<section class="coming-soon-block" id="comingSoonBlock">
+  <div class="wrap">
+    <div class="ic-big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 5h11v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5Z"/><path d="M15 8h2a3 3 0 0 1 0 6h-2"/></svg></div>
+    <h2>Still curling this collection into shape</h2>
+    <p>We're designing our first mug run right now — same den, same fox, morning-shaped. Leave your email and we'll let you know the second they're live.</p>
+    <form class="notify-form">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Notify Me</button>
+    </form>
+    <div class="notify-msg">You're on the list — we'll email you the moment it drops. 🦊</div>
+  </div>
+</section>
+<section class="news" id="news">
+  <div class="wrap news-inner">
+    <span class="eyebrow">Stay In The Den</span>
+    <h2>Get first look at new drops</h2>
+    <p>No noise — just new pieces, restocks, and the occasional fox story, straight to your inbox.</p>
+    <form class="news-form" id="newsForm">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Join</button>
+    </form>
+    <div class="news-msg" id="newsMsg">You're in. Welcome to the den. 🦊</div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-logo">
+        <img src="../assets/img/logo-white.webp" alt="Cubclipse" style="filter:invert(1) brightness(1.4) sepia(1) saturate(2) hue-rotate(-10deg);">
+        <span>Cubclipse</span>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Shop</h5>
+          <a href="../collections/totes.html">Tote Bags</a>
+          <a href="../collections/mugs.html">Mugs</a>
+          <a href="../collections/stickers.html">Stickers</a>
+        </div>
+        <div class="foot-col">
+          <h5>Brand</h5>
+          <a href="../index.html#story">Our Story</a>
+          <a href="../index.html#news">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h5>Help</h5>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Cubclipse. All rights reserved.</span>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 3v11.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 3a5 5 0 0 0 5 5"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 17c1-4 1-8 2-10.5S14 5 14 7.5s-1.5 4-3.5 4"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>const CATALOG_ROOT = '../';</script>
+<script src="../assets/js/cart.js"></script>
+<script src="../assets/js/catalog.js"></script>
+<script>renderCollectionGrid('mugs', '../');</script>
+</body>
+</html>
