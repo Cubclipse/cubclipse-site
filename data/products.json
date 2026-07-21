@@ -5,7 +5,7 @@
       "name": "The Burrow Tote",
       "category": "totes",
       "price": 32,
-      "comingSoon": false,
+      "comingSoon": true,
       "image": "/assets/img/products/tote.webp",
       "colors": [
         {
