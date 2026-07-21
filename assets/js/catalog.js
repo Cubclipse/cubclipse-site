@@ -13,6 +13,41 @@ function fetchCatalog(){
   return fetch(root + 'data/products.json').then(r => r.json()).then(d => d.products || []);
 }
 
+/* ---------- Homepage collection tiles (keeps counts/photos in sync with real data) ---------- */
+function renderHomeTiles(root){
+  const tiles = {
+    totes:    { countEl: 'tileTotesCount',    imgEl: 'tileTotesImg',    iconEl: null },
+    mugs:     { countEl: 'tileMugsCount',     imgEl: null,              iconEl: 'tileMugsIcon' },
+    stickers: { countEl: 'tileStickersCount', imgEl: null,              iconEl: 'tileStickersIcon' }
+  };
+  const fallbackImg = (typeof root !== 'undefined' ? root : '') + 'assets/img/tote.webp';
+
+  fetchCatalog().then(products => {
+    Object.keys(tiles).forEach(cat => {
+      const live = products.filter(p => p.category === cat && !p.comingSoon);
+      const countEl = document.getElementById(tiles[cat].countEl);
+      if(countEl){
+        countEl.textContent = live.length === 0
+          ? 'In design'
+          : (live.length === 1 ? '1 piece available' : live.length + ' pieces available');
+      }
+      // If this category has a live product with a photo, show the real photo instead of the icon
+      if(live.length > 0 && live[0].image){
+        const imgSrc = (typeof root !== 'undefined' ? root : '') + live[0].image;
+        const imgEl = tiles[cat].imgEl ? document.getElementById(tiles[cat].imgEl) : null;
+        const iconEl = tiles[cat].iconEl ? document.getElementById(tiles[cat].iconEl) : null;
+        if(imgEl){ imgEl.src = imgSrc; }
+        else if(iconEl){
+          const img = document.createElement('img');
+          img.src = imgSrc;
+          img.alt = cat;
+          iconEl.replaceWith(img);
+        }
+      }
+    });
+  });
+}
+
 /* ---------- Collection grid page (e.g. collections/totes.html) ---------- */
 function renderCollectionGrid(category, root){
   const grid = document.getElementById('collectionGrid');
