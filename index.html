@@ -88,17 +88,17 @@
       <h2>Pick your corner of the den</h2>
     </div>
     <div class="collection-tiles">
-      <a class="collection-tile" href="collections/totes.html">
-        <img src="assets/img/tote.webp" alt="Tote Bags collection">
-        <div class="tile-label"><h3>Tote Bags</h3><span>1 piece available</span></div>
+      <a class="collection-tile" href="collections/totes.html" id="tileTotes">
+        <img src="assets/img/tote.webp" alt="Tote Bags collection" id="tileTotesImg">
+        <div class="tile-label"><h3>Tote Bags</h3><span id="tileTotesCount">In design</span></div>
       </a>
-      <a class="collection-tile" href="collections/mugs.html">
-        <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 5h11v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5Z"/><path d="M15 8h2a3 3 0 0 1 0 6h-2"/></svg></div>
-        <div class="tile-label"><h3>Mugs</h3><span>In design</span></div>
+      <a class="collection-tile" href="collections/mugs.html" id="tileMugs">
+        <div class="tile-icon" id="tileMugsIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 5h11v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5Z"/><path d="M15 8h2a3 3 0 0 1 0 6h-2"/></svg></div>
+        <div class="tile-label"><h3>Mugs</h3><span id="tileMugsCount">In design</span></div>
       </a>
-      <a class="collection-tile" href="collections/stickers.html">
-        <div class="tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="8"/><path d="M9 12h6M12 9v6"/></svg></div>
-        <div class="tile-label"><h3>Stickers</h3><span>In design</span></div>
+      <a class="collection-tile" href="collections/stickers.html" id="tileStickers">
+        <div class="tile-icon" id="tileStickersIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="8"/><path d="M9 12h6M12 9v6"/></svg></div>
+        <div class="tile-label"><h3>Stickers</h3><span id="tileStickersCount">In design</span></div>
       </a>
     </div>
   </div>
@@ -175,5 +175,7 @@
   </div>
 </footer>
 <script src="assets/js/cart.js"></script>
+<script src="assets/js/catalog.js"></script>
+<script>const CATALOG_ROOT = ''; renderHomeTiles('');</script>
 </body>
 </html>
