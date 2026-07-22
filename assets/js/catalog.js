@@ -7,61 +7,20 @@
    ===================================================================== */
 
 function fetchCatalog(){
-  // "root" is set per-page as a global before this script loads,
-  // e.g. const CATALOG_ROOT = '../'; for pages inside /collections/ or /products/
   const root = (typeof CATALOG_ROOT !== 'undefined') ? CATALOG_ROOT : '';
-  return fetch(root + 'data/products.json').then(r => r.json()).then(d => d.products || []);
-}
-
-/* ---------- Homepage collection tiles (keeps counts/photos in sync with real data) ---------- */
-function renderHomeTiles(root){
-  const TILE_ICONS = {
-    totes: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
-    mugs: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 5h11v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5Z"/><path d="M15 8h2a3 3 0 0 1 0 6h-2"/></svg>',
-    stickers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="8"/><path d="M9 12h6M12 9v6"/></svg>'
-  };
-  const tiles = {
-    totes:    { countEl: 'tileTotesCount',    iconEl: 'tileTotesIcon' },
-    mugs:     { countEl: 'tileMugsCount',     iconEl: 'tileMugsIcon' },
-    stickers: { countEl: 'tileStickersCount', iconEl: 'tileStickersIcon' }
-  };
-
-  fetchCatalog().then(products => {
-    Object.keys(tiles).forEach(cat => {
-      const live = products.filter(p => p.category === cat && !p.comingSoon);
-      const countEl = document.getElementById(tiles[cat].countEl);
-      if(countEl){
-        countEl.textContent = live.length === 0
-          ? 'In design'
-          : (live.length === 1 ? '1 piece available' : live.length + ' pieces available');
-      }
-
-      const tileAnchor = document.getElementById('tile' + cat.charAt(0).toUpperCase() + cat.slice(1));
-      const currentImg = tileAnchor ? tileAnchor.querySelector('img.tile-photo') : null;
-      const iconEl = document.getElementById(tiles[cat].iconEl);
-
-      if(live.length > 0 && live[0].image){
-        // Show the real product photo
-        const imgSrc = (typeof root !== 'undefined' ? root : '') + live[0].image;
-        if(currentImg){
-          currentImg.src = imgSrc; // already showing a photo, just update it
-        } else if(iconEl){
-          const img = document.createElement('img');
-          img.src = imgSrc;
-          img.alt = cat;
-          img.className = 'tile-photo';
-          iconEl.replaceWith(img);
-        }
-      } else if(currentImg){
-        // No live product anymore — revert back to this category's own icon
-        const icon = document.createElement('div');
-        icon.className = 'tile-icon';
-        icon.id = tiles[cat].iconEl;
-        icon.innerHTML = TILE_ICONS[cat];
-        currentImg.replaceWith(icon);
-      }
-    });
-  });
+  const sources = [
+    { file: 'data/products-totes.json',    category: 'totes' },
+    { file: 'data/products-mugs.json',     category: 'mugs' },
+    { file: 'data/products-stickers.json', category: 'stickers' }
+  ];
+  return Promise.all(
+    sources.map(s =>
+      fetch(root + s.file)
+        .then(r => r.ok ? r.json() : { products: [] })
+        .then(d => (d.products || []).map(p => ({ ...p, category: s.category })))
+        .catch(() => [])
+    )
+  ).then(results => results.flat());
 }
 
 /* ---------- Collection grid page (e.g. collections/totes.html) ---------- */
