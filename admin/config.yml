@@ -40,7 +40,7 @@ collections:
                 name: "gallery"
                 widget: "list"
                 required: false
-                field: { label: "Fotka", widget: "image" }
+                field: { label: "Fotka", name: "photo", widget: "image" }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
@@ -52,7 +52,7 @@ collections:
                     widget: "list"
                     min: 1
                     max: 10
-                    field: { label: "Fotka", widget: "image" }
+                    field: { label: "Fotka", name: "photo", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -79,7 +79,7 @@ collections:
                 name: "gallery"
                 widget: "list"
                 required: false
-                field: { label: "Fotka", widget: "image" }
+                field: { label: "Fotka", name: "photo", widget: "image" }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
@@ -91,7 +91,7 @@ collections:
                     widget: "list"
                     min: 1
                     max: 10
-                    field: { label: "Fotka", widget: "image" }
+                    field: { label: "Fotka", name: "photo", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -118,7 +118,7 @@ collections:
                 name: "gallery"
                 widget: "list"
                 required: false
-                field: { label: "Fotka", widget: "image" }
+                field: { label: "Fotka", name: "photo", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál", name: "material", widget: "text", required: false }
               - { label: "Velikost (cm)", name: "size", widget: "string", required: false }
