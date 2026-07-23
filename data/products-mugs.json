@@ -6,7 +6,11 @@
       "price": 20,
       "comingSoon": false,
       "image": "/assets/img/products/19f5cadbdb0.jpg",
-      "gallery": [],
+      "gallery": [
+        {
+          "photo": "/assets/img/products/19f5cadbdb0-3-.jpg"
+        }
+      ],
       "colors": [],
       "description": "mug"
     }
