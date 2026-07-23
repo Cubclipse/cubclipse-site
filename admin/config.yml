@@ -41,7 +41,8 @@ collections:
                 widget: "list"
                 required: false
                 default: []
-                field: { label: "Fotka", name: "photo", widget: "image" }
+                fields:
+                  - { label: "Fotka", name: "photo", widget: "image" }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
@@ -57,7 +58,8 @@ collections:
                     default: []
                     min: 1
                     max: 10
-                    field: { label: "Fotka", name: "photo", widget: "image" }
+                    fields:
+                      - { label: "Fotka", name: "photo", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -85,7 +87,8 @@ collections:
                 widget: "list"
                 required: false
                 default: []
-                field: { label: "Fotka", name: "photo", widget: "image" }
+                fields:
+                  - { label: "Fotka", name: "photo", widget: "image" }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
@@ -101,7 +104,8 @@ collections:
                     default: []
                     min: 1
                     max: 10
-                    field: { label: "Fotka", name: "photo", widget: "image" }
+                    fields:
+                      - { label: "Fotka", name: "photo", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -129,7 +133,8 @@ collections:
                 widget: "list"
                 required: false
                 default: []
-                field: { label: "Fotka", name: "photo", widget: "image" }
+                fields:
+                  - { label: "Fotka", name: "photo", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál", name: "material", widget: "text", required: false }
               - { label: "Velikost (cm)", name: "size", widget: "string", required: false }
