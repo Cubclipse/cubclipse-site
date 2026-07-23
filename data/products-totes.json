@@ -1,17 +1,22 @@
 {
   "products": [
     {
-      "material": "12oz brushed cotton canvas, reinforced stitched handles, interior flat bottom. Spot clean or gentle machine wash, lay flat to dry.",
-      "price": 32,
+      "id": "burrow-tote",
       "name": "The Burrow Tote",
-      "dimensions": "15.5\" W x 16\" H, 11\" handle drop. Fits a 13–14\" laptop and daily carry with room to spare.",
+      "price": 32,
+      "comingSoon": false,
+      "image": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-1-.jpg",
+      "gallery": [
+        { "photo": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag.jpg" },
+        { "photo": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-4-.jpg" }
+      ],
       "colors": [
         {
           "name": "Onyx Black",
           "image": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-1-.jpg",
           "images": [
-            "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-2-.jpg",
-            "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-3-.jpg"
+            { "photo": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-2-.jpg" },
+            { "photo": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-3-.jpg" }
           ]
         },
         {
@@ -19,15 +24,10 @@
           "image": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag.jpg"
         }
       ],
-      "gallery": [
-        "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag.jpg",
-        "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-4-.jpg"
-      ],
-      "etsyUrl": "",
-      "id": "burrow-tote",
-      "image": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-1-.jpg",
-      "comingSoon": false,
-      "description": "Heavyweight cotton canvas, screen-printed by hand with our den's own line art. Room for a laptop, a library book, and whatever else you're carrying today. \"Born to Howl\" — for the ones who mean it quietly.\n\nTest popisku."
+      "description": "Heavyweight cotton canvas, screen-printed by hand with our den's own line art. Room for a laptop, a library book, and whatever else you're carrying today. \"Born to Howl\" — for the ones who mean it quietly.\n\nTest popisku.",
+      "material": "12oz brushed cotton canvas, reinforced stitched handles, interior flat bottom. Spot clean or gentle machine wash, lay flat to dry.",
+      "dimensions": "15.5\" W x 16\" H, 11\" handle drop. Fits a 13–14\" laptop and daily carry with room to spare.",
+      "etsyUrl": ""
     }
   ]
 }
