@@ -1,5 +1,5 @@
 /* =====================================================================
-   CUBCLIPSE CATALOG — reads /data/products.json (edited via /admin CMS)
+   CUBCLIPSE CATALOG — reads /data/products-*.json (edited via /admin CMS)
    and renders:
      - collection grids (collections/totes.html, mugs.html, stickers.html)
      - the single product template (product.html?id=...)
@@ -93,73 +93,36 @@ function renderProductDetail(root){
     const mainImg = document.getElementById('productImg');
     const gallery = document.getElementById('pcGallery');
 
-    // Pomocná funkce — vytáhne src z fotky ať je to string, nebo objekt {src}/{photo}
+    // Vytáhne src z fotky ať je to string, nebo objekt {photo}
     function getSrc(photo){
-      return typeof photo === 'string' ? photo : (photo.src || photo.photo || p.image);
+      return typeof photo === 'string' ? photo : (photo.photo || photo.src || p.image);
     }
 
-    // Pomocná funkce pro překreslení galerie (1 až 10 fotek)
-    function updateGallery(photoArray) {
-      const photos = (photoArray && photoArray.length) ? photoArray : [p.image];
+    // Galerie — 1 až 10 fotek, žádná vazba na barvu
+    const photos = (p.gallery && p.gallery.length) ? p.gallery : [p.image];
+    gallery.innerHTML = photos.map((g, i) => {
+      const imgSrc = getSrc(g);
+      return `
+        <div class="thumb ${i === 0 ? 'active' : ''}" data-src="${root}${imgSrc}">
+          <img src="${root}${imgSrc}" alt="${p.name} view ${i + 1}">
+        </div>
+      `;
+    }).join('');
 
-      gallery.innerHTML = photos.map((g, i) => {
-        const imgSrc = getSrc(g);
-        return `
-          <div class="thumb ${i === 0 ? 'active' : ''}" data-src="${root}${imgSrc}">
-            <img src="${root}${imgSrc}" alt="${p.name} view ${i + 1}">
-          </div>
-        `;
-      }).join('');
+    mainImg.src = root + getSrc(photos[0]);
+    mainImg.alt = p.name;
 
-      mainImg.src = root + getSrc(photos[0]);
-
-      gallery.querySelectorAll('.thumb').forEach(t => {
-        t.addEventListener('click', () => {
-          gallery.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
-          t.classList.add('active');
-          mainImg.src = t.dataset.src;
-        });
+    gallery.querySelectorAll('.thumb').forEach(t => {
+      t.addEventListener('click', () => {
+        gallery.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        mainImg.src = t.dataset.src;
       });
-    }
+    });
 
-    // Color swatches — podpora 1 až 10 fotek na variantu, kolečko ukazuje reálnou fotku
+    // Barevné varianty — každá barva je teď samostatný produkt, takže swatch sekce se vždy schová
     const swatchWrap = document.getElementById('pcSwatches');
-    const colorLabel = document.getElementById('colorName');
-
-    if(p.colors && p.colors.length > 0){
-      swatchWrap.innerHTML = p.colors.map((c, i) => {
-        const photosForColor = c.images || c.gallery || (c.image ? [c.image] : p.gallery);
-        const swatchImg = (photosForColor && photosForColor.length) ? getSrc(photosForColor[0]) : p.image;
-        return `
-          <button class="swatch ${i === 0 ? 'active' : ''}" data-index="${i}" title="${c.name}"
-            style="background-image:url('${root}${swatchImg}'); background-size:cover; background-position:center;"></button>
-        `;
-      }).join('');
-
-      colorLabel.textContent = p.colors[0].name;
-
-      const initialPhotos = p.colors[0].images || p.colors[0].gallery || (p.colors[0].image ? [p.colors[0].image] : p.gallery);
-      updateGallery(initialPhotos);
-
-      swatchWrap.querySelectorAll('.swatch').forEach(sw => {
-        sw.addEventListener('click', () => {
-          swatchWrap.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-          sw.classList.add('active');
-
-          const colorIndex = parseInt(sw.dataset.index, 10);
-          const selectedColor = p.colors[colorIndex];
-
-          colorLabel.textContent = selectedColor.name;
-
-          const colorPhotos = selectedColor.images || selectedColor.gallery || (selectedColor.image ? [selectedColor.image] : p.gallery);
-          updateGallery(colorPhotos);
-        });
-      });
-      if(swatchWrap.parentElement) swatchWrap.parentElement.style.display = '';
-    } else {
-      updateGallery(p.gallery);
-      if(swatchWrap && swatchWrap.parentElement) swatchWrap.parentElement.style.display = 'none';
-    }
+    if(swatchWrap && swatchWrap.parentElement) swatchWrap.parentElement.style.display = 'none';
 
     // Etsy button
     const etsyBtn = document.getElementById('etsyBtn');
@@ -185,8 +148,7 @@ function renderProductDetail(root){
       qty = Math.min(9, qty+1); qtyVal.textContent = qty; updateAddLabel();
     });
     addBtn.addEventListener('click', ()=>{
-      const currentColor = colorLabel ? colorLabel.textContent : '';
-      addToCart(p.id, p.name, currentColor, p.price || 0, qty, mainImg.src);
+      addToCart(p.id, p.name, '', p.price || 0, qty, mainImg.src);
       addBtn.classList.add('added');
       setTimeout(()=> addBtn.classList.remove('added'), 2200);
     });
