@@ -7,18 +7,10 @@
       "comingSoon": false,
       "image": "/assets/img/products/19f5cadbdb0.jpg",
       "gallery": [
-        {
-          "photo": "/assets/img/products/19f5cadbdb0.jpg"
-        },
-        {
-          "photo": "/assets/img/products/19f5cadbdb0-1-.jpg"
-        },
-        {
-          "photo": "/assets/img/products/19f5cadbdb0-2-.jpg"
-        },
-        {
-          "photo": "/assets/img/products/19f5cadbdb0-3-.jpg"
-        }
+        "/assets/img/products/19f5cadbdb0.jpg",
+        "/assets/img/products/19f5cadbdb0-1-.jpg",
+        "/assets/img/products/19f5cadbdb0-2-.jpg",
+        "/assets/img/products/19f5cadbdb0-3-.jpg"
       ],
       "colors": [],
       "description": "mug"
