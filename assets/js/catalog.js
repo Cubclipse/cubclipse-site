@@ -94,14 +94,20 @@ function renderProductDetail(root){
     mainImg.src = root + p.image;
     mainImg.alt = p.name;
 
-    // Gallery thumbnails (real photos, click to swap main image)
+   // Gallery thumbnails (real photos, click to swap main image)
     const gallery = document.getElementById('pcGallery');
-    const photos = (p.gallery && p.gallery.length) ? p.gallery : [{src: p.image}];
-    gallery.innerHTML = photos.map((g, i) => `
-      <div class="thumb ${i===0 ? 'active' : ''}" data-src="${root}${g.src}">
-        <img src="${root}${g.src}" alt="${p.name} view ${i+1}">
-      </div>
-    `).join('');
+    const photos = (p.gallery && p.gallery.length) ? p.gallery : [p.image];
+    
+    gallery.innerHTML = photos.map((g, i) => {
+      // Pokud je 'g' objekt, vezme g.src. Pokud je to string, vezme přímo 'g'.
+      const imgSrc = typeof g === 'string' ? g : (g.src || p.image);
+      return `
+        <div class="thumb ${i===0 ? 'active' : ''}" data-src="${root}${imgSrc}">
+          <img src="${root}${imgSrc}" alt="${p.name} view ${i+1}">
+        </div>
+      `;
+    }).join('');
+
     gallery.querySelectorAll('.thumb').forEach(t => {
       t.addEventListener('click', () => {
         gallery.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
