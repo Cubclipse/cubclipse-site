@@ -8,7 +8,11 @@
       "colors": [
         {
           "name": "Onyx Black",
-          "image": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-1-.jpg"
+          "image": "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-1-.jpg",
+          "images": [
+            "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-2-.jpg",
+            "/assets/img/products/born-to-howl-wolf-pup-tote-bag-vampire-wolf-canvas-tote-halloween-tote-bag-minimalist-wolf-illustration-reusable-bag-3-.jpg"
+          ]
         },
         {
           "name": "White",
