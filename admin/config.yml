@@ -41,9 +41,10 @@ collections:
               - label: "Galerie (další fotky)"
                 name: "gallery"
                 widget: "list"
-                field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
+                fields:
+                  - { label: "Fotka", name: "photo", widget: "image", required: false }
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -71,9 +72,10 @@ collections:
               - label: "Galerie (další fotky)"
                 name: "gallery"
                 widget: "list"
-                field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
+                fields:
+                  - { label: "Fotka", name: "photo", widget: "image", required: false }
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -101,9 +103,10 @@ collections:
               - label: "Galerie (další fotky)"
                 name: "gallery"
                 widget: "list"
-                field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
+                fields:
+                  - { label: "Fotka", name: "photo", widget: "image", required: false }
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál", name: "material", widget: "text", required: false }
               - { label: "Velikost (cm)", name: "size", widget: "string", required: false }
