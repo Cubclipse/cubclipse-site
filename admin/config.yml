@@ -44,14 +44,6 @@ collections:
                 field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
-              - label: "Barevné varianty"
-                name: "colors"
-                widget: "list"
-                required: false
-                default: []
-                fields:
-                  - { label: "Název barvy", name: "name", widget: "string", required: false }
-                  - { label: "Fotka barvy", name: "image", widget: "image", required: false }
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -82,14 +74,6 @@ collections:
                 field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
-              - label: "Barevné varianty"
-                name: "colors"
-                widget: "list"
-                required: false
-                default: []
-                fields:
-                  - { label: "Název barvy", name: "name", widget: "string", required: false }
-                  - { label: "Fotka barvy", name: "image", widget: "image", required: false }
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
