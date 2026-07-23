@@ -40,7 +40,7 @@ collections:
                 name: "gallery"
                 widget: "list"
                 required: false
-                field: { label: "Fotka", name: "src", widget: "image" }
+                field: { label: "Fotka", widget: "image" }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
@@ -79,14 +79,14 @@ collections:
                 name: "gallery"
                 widget: "list"
                 required: false
-                field: { label: "Fotka", name: "src", widget: "image" }
+                field: { label: "Fotka", widget: "image" }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
                 required: false
                 fields:
                   - { label: "Název barvy", name: "name", widget: "string" }
-                 - label: "Fotky pro tuto barvu (Max 10)"
+                  - label: "Fotky pro tuto barvu (Max 10)"
                     name: "images"
                     widget: "list"
                     min: 1
@@ -118,7 +118,7 @@ collections:
                 name: "gallery"
                 widget: "list"
                 required: false
-                field: { label: "Fotka", name: "src", widget: "image" }
+                field: { label: "Fotka", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál", name: "material", widget: "text", required: false }
               - { label: "Velikost (cm)", name: "size", widget: "string", required: false }
