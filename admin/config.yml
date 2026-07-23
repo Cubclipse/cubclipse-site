@@ -49,7 +49,7 @@ collections:
                 default: []
                 fields:
                   - { label: "Název barvy", name: "name", widget: "string" }
-                  - label: "Fotka barvy", name: "image", widget: "image", required: false }
+                  - { label: "Fotka barvy", name: "image", widget: "image", required: false }
                   - label: "Fotky pro tuto barvu (Max 10)"
                     name: "images"
                     widget: "list"
@@ -93,7 +93,7 @@ collections:
                 default: []
                 fields:
                   - { label: "Název barvy", name: "name", widget: "string" }
-                  - label: "Fotka barvy", name: "image", widget: "image", required: false }
+                  - { label: "Fotka barvy", name: "image", widget: "image", required: false }
                   - label: "Fotky pro tuto barvu (Max 10)"
                     name: "images"
                     widget: "list"
