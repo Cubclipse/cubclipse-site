@@ -1,10 +1,11 @@
 {
   "products": [
     {
-      "comingSoon": false,
       "id": "born-to-howl-mug",
       "name": "Born to Howl Mug",
       "price": 20,
+      "comingSoon": false,
+      "image": "/assets/img/products/19f5cadbdb0.jpg",
       "gallery": [
         {
           "photo": "/assets/img/products/19f5cadbdb0-1-.jpg"
@@ -16,7 +17,7 @@
           "photo": "/assets/img/products/19f5cadbdb0-3-.jpg"
         }
       ],
-      "image": "/assets/img/products/19f5cadbdb0.jpg",
+      "colors": [],
       "description": "mug"
     }
   ]
