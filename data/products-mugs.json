@@ -18,6 +18,25 @@
       "price": 10,
       "image": "/assets/img/products/19f5cadbdb0.jpg",
       "description": "Mug test"
+    },
+    {
+      "comingSoon": false,
+      "gallery": [
+        {
+          "photo": "/assets/img/products/devil-corgi-mug-little-devil-big-energy-halloween-dog-mug-corgi-gift-11oz-ceramic-3-.jpg"
+        },
+        {
+          "photo": "/assets/img/products/devil-corgi-mug-little-devil-big-energy-halloween-dog-mug-corgi-gift-11oz-ceramic-2-.jpg"
+        },
+        {
+          "photo": "/assets/img/products/devil-corgi-mug-little-devil-big-energy-halloween-dog-mug-corgi-gift-11oz-ceramic.jpg"
+        }
+      ],
+      "id": "devil-corgi-mug",
+      "name": "Little Devil Big Energy Mug",
+      "price": 10,
+      "image": "/assets/img/products/devil-corgi-mug-little-devil-big-energy-halloween-dog-mug-corgi-gift-11oz-ceramic-1-.jpg",
+      "description": "second mug tst"
     }
   ]
 }
