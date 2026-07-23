@@ -1,18 +1,23 @@
 {
   "products": [
     {
+      "comingSoon": false,
+      "gallery": [
+        {
+          "photo": "/assets/img/products/19f5cadbdb0-1-.jpg"
+        },
+        {
+          "photo": "/assets/img/products/19f5cadbdb0-2-.jpg"
+        },
+        {
+          "photo": "/assets/img/products/19f5cadbdb0-3-.jpg"
+        }
+      ],
       "id": "born-to-howl-mug",
       "name": "Born to Howl Mug",
-      "price": 20,
-      "comingSoon": false,
+      "price": 10,
       "image": "/assets/img/products/19f5cadbdb0.jpg",
-      "gallery": [
-        "/assets/img/products/19f5cadbdb0-1-.jpg",
-        "/assets/img/products/19f5cadbdb0-2-.jpg",
-        "/assets/img/products/19f5cadbdb0-3-.jpg"
-      ],
-      "colors": [],
-      "description": "mug"
+      "description": "Mug test"
     }
   ]
 }
