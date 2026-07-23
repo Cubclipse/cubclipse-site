@@ -91,50 +91,74 @@ function renderProductDetail(root){
     document.getElementById('dimensionsText').textContent = p.dimensions || 'Details coming soon.';
 
     const mainImg = document.getElementById('productImg');
-    mainImg.src = root + p.image;
-    mainImg.alt = p.name;
-
-   // Gallery thumbnails (real photos, click to swap main image)
     const gallery = document.getElementById('pcGallery');
-    const photos = (p.gallery && p.gallery.length) ? p.gallery : [p.image];
-    
-    gallery.innerHTML = photos.map((g, i) => {
-      // Pokud je 'g' objekt, vezme g.src. Pokud je to string, vezme přímo 'g'.
-      const imgSrc = typeof g === 'string' ? g : (g.src || p.image);
-      return `
-        <div class="thumb ${i===0 ? 'active' : ''}" data-src="${root}${imgSrc}">
-          <img src="${root}${imgSrc}" alt="${p.name} view ${i+1}">
-        </div>
-      `;
-    }).join('');
 
-    gallery.querySelectorAll('.thumb').forEach(t => {
-      t.addEventListener('click', () => {
-        gallery.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
-        t.classList.add('active');
-        mainImg.src = t.dataset.src;
-      });
-    });
+    // Pomocná funkce — vytáhne src z fotky ať je to string, nebo objekt {src}/{photo}
+    function getSrc(photo){
+      return typeof photo === 'string' ? photo : (photo.src || photo.photo || p.image);
+    }
 
-    // Color swatches — real photo per variant, not a filter
-    const swatchWrap = document.getElementById('pcSwatches');
-    const colorLabel = document.getElementById('colorName');
-    if(p.colors && p.colors.length > 1){
-      swatchWrap.innerHTML = p.colors.map((c, i) => `
-        <button class="swatch ${i===0 ? 'active' : ''}" data-image="${root}${c.image}" data-name="${c.name}" title="${c.name}" style="background:#ccc;"></button>
-      `).join('');
-      colorLabel.textContent = p.colors[0].name;
-      swatchWrap.querySelectorAll('.swatch').forEach(sw => {
-        sw.addEventListener('click', () => {
-          swatchWrap.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
-          sw.classList.add('active');
-          mainImg.src = sw.dataset.image;
-          colorLabel.textContent = sw.dataset.name;
+    // Pomocná funkce pro překreslení galerie (1 až 10 fotek)
+    function updateGallery(photoArray) {
+      const photos = (photoArray && photoArray.length) ? photoArray : [p.image];
+
+      gallery.innerHTML = photos.map((g, i) => {
+        const imgSrc = getSrc(g);
+        return `
+          <div class="thumb ${i === 0 ? 'active' : ''}" data-src="${root}${imgSrc}">
+            <img src="${root}${imgSrc}" alt="${p.name} view ${i + 1}">
+          </div>
+        `;
+      }).join('');
+
+      mainImg.src = root + getSrc(photos[0]);
+
+      gallery.querySelectorAll('.thumb').forEach(t => {
+        t.addEventListener('click', () => {
+          gallery.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
+          t.classList.add('active');
+          mainImg.src = t.dataset.src;
         });
       });
-      swatchWrap.parentElement.style.display = '';
-    } else if(swatchWrap){
-      swatchWrap.parentElement.style.display = 'none';
+    }
+
+    // Color swatches — podpora 1 až 10 fotek na variantu, kolečko ukazuje reálnou fotku
+    const swatchWrap = document.getElementById('pcSwatches');
+    const colorLabel = document.getElementById('colorName');
+
+    if(p.colors && p.colors.length > 0){
+      swatchWrap.innerHTML = p.colors.map((c, i) => {
+        const photosForColor = c.images || c.gallery || (c.image ? [c.image] : p.gallery);
+        const swatchImg = (photosForColor && photosForColor.length) ? getSrc(photosForColor[0]) : p.image;
+        return `
+          <button class="swatch ${i === 0 ? 'active' : ''}" data-index="${i}" title="${c.name}"
+            style="background-image:url('${root}${swatchImg}'); background-size:cover; background-position:center;"></button>
+        `;
+      }).join('');
+
+      colorLabel.textContent = p.colors[0].name;
+
+      const initialPhotos = p.colors[0].images || p.colors[0].gallery || (p.colors[0].image ? [p.colors[0].image] : p.gallery);
+      updateGallery(initialPhotos);
+
+      swatchWrap.querySelectorAll('.swatch').forEach(sw => {
+        sw.addEventListener('click', () => {
+          swatchWrap.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+          sw.classList.add('active');
+
+          const colorIndex = parseInt(sw.dataset.index, 10);
+          const selectedColor = p.colors[colorIndex];
+
+          colorLabel.textContent = selectedColor.name;
+
+          const colorPhotos = selectedColor.images || selectedColor.gallery || (selectedColor.image ? [selectedColor.image] : p.gallery);
+          updateGallery(colorPhotos);
+        });
+      });
+      if(swatchWrap.parentElement) swatchWrap.parentElement.style.display = '';
+    } else {
+      updateGallery(p.gallery);
+      if(swatchWrap && swatchWrap.parentElement) swatchWrap.parentElement.style.display = 'none';
     }
 
     // Etsy button
