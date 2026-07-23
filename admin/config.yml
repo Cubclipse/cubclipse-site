@@ -41,8 +41,7 @@ collections:
                 widget: "list"
                 required: false
                 default: []
-                fields:
-                  - { label: "Fotka", name: "photo", widget: "image" }
+                field: { label: "Fotka", widget: "image" }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
@@ -50,6 +49,7 @@ collections:
                 default: []
                 fields:
                   - { label: "Název barvy", name: "name", widget: "string" }
+                  - label: "Fotka barvy", name: "image", widget: "image", required: false }
                   - label: "Fotky pro tuto barvu (Max 10)"
                     name: "images"
                     widget: "list"
@@ -57,8 +57,7 @@ collections:
                     default: []
                     min: 1
                     max: 10
-                    fields:
-                      - { label: "Fotka", name: "photo", widget: "image" }
+                    field: { label: "Fotka", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -86,8 +85,7 @@ collections:
                 widget: "list"
                 required: false
                 default: []
-                fields:
-                  - { label: "Fotka", name: "photo", widget: "image" }
+                field: { label: "Fotka", widget: "image" }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
@@ -95,6 +93,7 @@ collections:
                 default: []
                 fields:
                   - { label: "Název barvy", name: "name", widget: "string" }
+                  - label: "Fotka barvy", name: "image", widget: "image", required: false }
                   - label: "Fotky pro tuto barvu (Max 10)"
                     name: "images"
                     widget: "list"
@@ -102,8 +101,7 @@ collections:
                     default: []
                     min: 1
                     max: 10
-                    fields:
-                      - { label: "Fotka", name: "photo", widget: "image" }
+                    field: { label: "Fotka", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -131,8 +129,7 @@ collections:
                 widget: "list"
                 required: false
                 default: []
-                fields:
-                  - { label: "Fotka", name: "photo", widget: "image" }
+                field: { label: "Fotka", widget: "image" }
               - { label: "Popis produktu", name: "description", widget: "text" }
               - { label: "Materiál", name: "material", widget: "text", required: false }
               - { label: "Velikost (cm)", name: "size", widget: "string", required: false }
