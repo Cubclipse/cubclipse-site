@@ -29,7 +29,7 @@ collections:
           - label: "Produkty"
             name: "products"
             widget: "list"
-            summary: "{{name}}"
+            summary: "{{fields.name}}"
             fields:
               - { label: "ID (bez mezer, malá písmena, pomlčky)", name: "id", widget: "string" }
               - { label: "Název produktu", name: "name", widget: "string" }
@@ -42,25 +42,24 @@ collections:
                 required: false
                 default: []
                 fields:
-                  - { label: "Fotka", name: "photo", widget: "image" }
+                  - { label: "Fotka", name: "photo", widget: "image", required: false }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
                 required: false
                 default: []
                 fields:
-                  - { label: "Název barvy", name: "name", widget: "string" }
+                  - { label: "Název barvy", name: "name", widget: "string", required: false }
                   - { label: "Fotka barvy", name: "image", widget: "image", required: false }
                   - label: "Fotky pro tuto barvu (Max 10)"
                     name: "images"
                     widget: "list"
                     required: false
                     default: []
-                    min: 1
                     max: 10
                     fields:
-                      - { label: "Fotka", name: "photo", widget: "image" }
-              - { label: "Popis produktu", name: "description", widget: "text" }
+                      - { label: "Fotka", name: "photo", widget: "image", required: false }
+              - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
               - { label: "Odkaz na Etsy listing", name: "etsyUrl", widget: "string", required: false }
@@ -75,7 +74,7 @@ collections:
           - label: "Produkty"
             name: "products"
             widget: "list"
-            summary: "{{name}}"
+            summary: "{{fields.name}}"
             fields:
               - { label: "ID (bez mezer, malá písmena, pomlčky)", name: "id", widget: "string" }
               - { label: "Název produktu", name: "name", widget: "string" }
@@ -88,25 +87,24 @@ collections:
                 required: false
                 default: []
                 fields:
-                  - { label: "Fotka", name: "photo", widget: "image" }
+                  - { label: "Fotka", name: "photo", widget: "image", required: false }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
                 required: false
                 default: []
                 fields:
-                  - { label: "Název barvy", name: "name", widget: "string" }
+                  - { label: "Název barvy", name: "name", widget: "string", required: false }
                   - { label: "Fotka barvy", name: "image", widget: "image", required: false }
                   - label: "Fotky pro tuto barvu (Max 10)"
                     name: "images"
                     widget: "list"
                     required: false
                     default: []
-                    min: 1
                     max: 10
                     fields:
-                      - { label: "Fotka", name: "photo", widget: "image" }
-              - { label: "Popis produktu", name: "description", widget: "text" }
+                      - { label: "Fotka", name: "photo", widget: "image", required: false }
+              - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
               - { label: "Odkaz na Etsy listing", name: "etsyUrl", widget: "string", required: false }
@@ -121,7 +119,7 @@ collections:
           - label: "Produkty"
             name: "products"
             widget: "list"
-            summary: "{{name}}"
+            summary: "{{fields.name}}"
             fields:
               - { label: "ID (bez mezer, malá písmena, pomlčky)", name: "id", widget: "string" }
               - { label: "Název produktu", name: "name", widget: "string" }
@@ -134,8 +132,8 @@ collections:
                 required: false
                 default: []
                 fields:
-                  - { label: "Fotka", name: "photo", widget: "image" }
-              - { label: "Popis produktu", name: "description", widget: "text" }
+                  - { label: "Fotka", name: "photo", widget: "image", required: false }
+              - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál", name: "material", widget: "text", required: false }
               - { label: "Velikost (cm)", name: "size", widget: "string", required: false }
               - { label: "Odkaz na Etsy listing", name: "etsyUrl", widget: "string", required: false }
