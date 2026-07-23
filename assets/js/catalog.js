@@ -1,10 +1,46 @@
 /* =====================================================================
    CUBCLIPSE CATALOG — reads /data/products-*.json (edited via /admin CMS)
-   and renders:
-     - collection grids (collections/totes.html, mugs.html, stickers.html)
-     - the single product template (product.html?id=...)
-   Include this AFTER cart.js on any page that needs it.
+   Automatically expands legacy "colors" arrays into separate products,
+   so you never have to manually split JSON data by hand.
    ===================================================================== */
+
+// Vytáhne src z fotky ať je to string, nebo objekt {photo}/{src}
+function getPhotoSrc(photo, fallback){
+  if(!photo) return fallback;
+  return typeof photo === 'string' ? photo : (photo.photo || photo.src || fallback);
+}
+
+// Vytvoří bezpečný slug z názvu barvy (Onyx Black -> onyx-black)
+function slugify(str){
+  return String(str)
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // odstraní diakritiku
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+// Pokud produkt má neprázdné "colors", rozdělí ho na samostatné produkty (jeden na barvu).
+// Jinak vrátí produkt beze změny v poli.
+function expandProductColors(p){
+  if(!p.colors || p.colors.length === 0) return [p];
+
+  return p.colors.map(c => {
+    const photos = (c.images && c.images.length) ? c.images
+                 : (c.image ? [c.image] : (p.gallery || [p.image]));
+    const mainSrc = getPhotoSrc(photos[0], p.image);
+
+    // Odstraní 'colors' z výsledného objektu, ať se do něj UI/logika dál nezaplétá
+    const { colors, ...rest } = p;
+
+    return {
+      ...rest,
+      id: `${p.id}-${slugify(c.name)}`,
+      name: `${p.name} — ${c.name}`,
+      image: mainSrc,
+      gallery: photos
+    };
+  });
+}
 
 function fetchCatalog(){
   const root = (typeof CATALOG_ROOT !== 'undefined') ? CATALOG_ROOT : '';
@@ -17,7 +53,10 @@ function fetchCatalog(){
     sources.map(s =>
       fetch(root + s.file)
         .then(r => r.ok ? r.json() : { products: [] })
-        .then(d => (d.products || []).map(p => ({ ...p, category: s.category })))
+        .then(d => (d.products || [])
+          .flatMap(p => expandProductColors(p))
+          .map(p => ({ ...p, category: s.category }))
+        )
         .catch(() => [])
     )
   ).then(results => results.flat());
@@ -44,7 +83,7 @@ function renderCollectionGrid(category, root){
 
     grid.innerHTML = live.map(p => `
       <div class="pg-card">
-        <div class="pg-photo"><img src="${root}${p.image}" alt="${p.name}"></div>
+        <div class="pg-photo"><img src="${root}${getPhotoSrc(p.image, '')}" alt="${p.name}"></div>
         <div class="pg-info">
           <span class="cat">${p.category}</span>
           <h4>${p.name}</h4>
@@ -93,15 +132,9 @@ function renderProductDetail(root){
     const mainImg = document.getElementById('productImg');
     const gallery = document.getElementById('pcGallery');
 
-    // Vytáhne src z fotky ať je to string, nebo objekt {photo}
-    function getSrc(photo){
-      return typeof photo === 'string' ? photo : (photo.photo || photo.src || p.image);
-    }
-
-    // Galerie — 1 až 10 fotek, žádná vazba na barvu
     const photos = (p.gallery && p.gallery.length) ? p.gallery : [p.image];
     gallery.innerHTML = photos.map((g, i) => {
-      const imgSrc = getSrc(g);
+      const imgSrc = getPhotoSrc(g, p.image);
       return `
         <div class="thumb ${i === 0 ? 'active' : ''}" data-src="${root}${imgSrc}">
           <img src="${root}${imgSrc}" alt="${p.name} view ${i + 1}">
@@ -109,7 +142,7 @@ function renderProductDetail(root){
       `;
     }).join('');
 
-    mainImg.src = root + getSrc(photos[0]);
+    mainImg.src = root + getPhotoSrc(photos[0], p.image);
     mainImg.alt = p.name;
 
     gallery.querySelectorAll('.thumb').forEach(t => {
@@ -120,11 +153,9 @@ function renderProductDetail(root){
       });
     });
 
-    // Barevné varianty — každá barva je teď samostatný produkt, takže swatch sekce se vždy schová
     const swatchWrap = document.getElementById('pcSwatches');
     if(swatchWrap && swatchWrap.parentElement) swatchWrap.parentElement.style.display = 'none';
 
-    // Etsy button
     const etsyBtn = document.getElementById('etsyBtn');
     if(p.etsyUrl){
       etsyBtn.href = p.etsyUrl;
@@ -133,7 +164,6 @@ function renderProductDetail(root){
       etsyBtn.style.display = 'none';
     }
 
-    // Add to bag
     let qty = 1;
     const qtyVal = document.getElementById('qtyVal');
     const addBtn = document.getElementById('addBtn');
