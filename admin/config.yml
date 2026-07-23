@@ -41,7 +41,7 @@ collections:
               - label: "Galerie (další fotky)"
                 name: "gallery"
                 widget: "list"
-                field: { label: "Fotka", widget: "image" }
+                field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
@@ -71,7 +71,7 @@ collections:
               - label: "Galerie (další fotky)"
                 name: "gallery"
                 widget: "list"
-                field: { label: "Fotka", widget: "image" }
+                field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
@@ -101,7 +101,7 @@ collections:
               - label: "Galerie (další fotky)"
                 name: "gallery"
                 widget: "list"
-                field: { label: "Fotka", widget: "image" }
+                field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
