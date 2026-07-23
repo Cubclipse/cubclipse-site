@@ -41,10 +41,9 @@ collections:
               - label: "Galerie (další fotky)"
                 name: "gallery"
                 widget: "list"
+                field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
-                fields:
-                  - { label: "Fotka", name: "photo", widget: "image", required: false }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
@@ -53,14 +52,6 @@ collections:
                 fields:
                   - { label: "Název barvy", name: "name", widget: "string", required: false }
                   - { label: "Fotka barvy", name: "image", widget: "image", required: false }
-                  - label: "Fotky pro tuto barvu (Max 10)"
-                    name: "images"
-                    widget: "list"
-                    required: false
-                    default: []
-                    max: 10
-                    fields:
-                      - { label: "Fotka", name: "photo", widget: "image", required: false }
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -88,10 +79,9 @@ collections:
               - label: "Galerie (další fotky)"
                 name: "gallery"
                 widget: "list"
+                field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
-                fields:
-                  - { label: "Fotka", name: "photo", widget: "image", required: false }
               - label: "Barevné varianty"
                 name: "colors"
                 widget: "list"
@@ -100,14 +90,6 @@ collections:
                 fields:
                   - { label: "Název barvy", name: "name", widget: "string", required: false }
                   - { label: "Fotka barvy", name: "image", widget: "image", required: false }
-                  - label: "Fotky pro tuto barvu (Max 10)"
-                    name: "images"
-                    widget: "list"
-                    required: false
-                    default: []
-                    max: 10
-                    fields:
-                      - { label: "Fotka", name: "photo", widget: "image", required: false }
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál a péče", name: "material", widget: "text", required: false }
               - { label: "Rozměry", name: "dimensions", widget: "string", required: false }
@@ -135,10 +117,9 @@ collections:
               - label: "Galerie (další fotky)"
                 name: "gallery"
                 widget: "list"
+                field: { label: "Fotka", name: "photo", widget: "image" }
                 required: false
                 default: []
-                fields:
-                  - { label: "Fotka", name: "photo", widget: "image", required: false }
               - { label: "Popis produktu", name: "description", widget: "text", required: false }
               - { label: "Materiál", name: "material", widget: "text", required: false }
               - { label: "Velikost (cm)", name: "size", widget: "string", required: false }
