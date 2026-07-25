@@ -29,7 +29,6 @@ function expandProductColors(p){
                  : (c.image ? [c.image] : (p.gallery || [p.image]));
     const mainSrc = getPhotoSrc(photos[0], p.image);
 
-    // Odstraní 'colors' z výsledného objektu, ať se do něj UI/logika dál nezaplétá
     const { colors, ...rest } = p;
 
     return {
@@ -62,7 +61,56 @@ function fetchCatalog(){
   ).then(results => results.flat());
 }
 
-/* ---------- Collection grid page (e.g. collections/totes.html) ---------- */
+/* ---------- Homepage collection tiles ---------- */
+function renderHomeTiles(root){
+  const TILE_ICONS = {
+    totes: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
+    mugs: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 5h11v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5Z"/><path d="M15 8h2a3 3 0 0 1 0 6h-2"/></svg>',
+    stickers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="8"/><path d="M9 12h6M12 9v6"/></svg>'
+  };
+  const tiles = {
+    totes:    { countEl: 'tileTotesCount',    iconEl: 'tileTotesIcon' },
+    mugs:     { countEl: 'tileMugsCount',     iconEl: 'tileMugsIcon' },
+    stickers: { countEl: 'tileStickersCount', iconEl: 'tileStickersIcon' }
+  };
+
+  fetchCatalog().then(products => {
+    Object.keys(tiles).forEach(cat => {
+      const live = products.filter(p => p.category === cat && !p.comingSoon);
+      const countEl = document.getElementById(tiles[cat].countEl);
+      if(countEl){
+        countEl.textContent = live.length === 0
+          ? 'In design'
+          : (live.length === 1 ? '1 piece available' : live.length + ' pieces available');
+      }
+
+      const tileAnchor = document.getElementById('tile' + cat.charAt(0).toUpperCase() + cat.slice(1));
+      const currentImg = tileAnchor ? tileAnchor.querySelector('img.tile-photo') : null;
+      const iconEl = document.getElementById(tiles[cat].iconEl);
+
+      if(live.length > 0 && live[0].image){
+        const imgSrc = (typeof root !== 'undefined' ? root : '') + getPhotoSrc(live[0].image, '');
+        if(currentImg){
+          currentImg.src = imgSrc;
+        } else if(iconEl){
+          const img = document.createElement('img');
+          img.src = imgSrc;
+          img.alt = cat;
+          img.className = 'tile-photo';
+          iconEl.replaceWith(img);
+        }
+      } else if(currentImg){
+        const icon = document.createElement('div');
+        icon.className = 'tile-icon';
+        icon.id = tiles[cat].iconEl;
+        icon.innerHTML = TILE_ICONS[cat];
+        currentImg.replaceWith(icon);
+      }
+    });
+  });
+}
+
+/* ---------- Collection grid page ---------- */
 function renderCollectionGrid(category, root){
   const grid = document.getElementById('collectionGrid');
   const comingSoonBlock = document.getElementById('comingSoonBlock');
@@ -131,27 +179,61 @@ function renderProductDetail(root){
 
     const mainImg = document.getElementById('productImg');
     const gallery = document.getElementById('pcGallery');
+    const dotsWrap = document.getElementById('pcDots');
+    const prevBtn = document.getElementById('pcPrev');
+    const nextBtn = document.getElementById('pcNext');
+    const frame = mainImg.closest('.pc-media-frame');
 
-    const photos = (p.gallery && p.gallery.length) ? p.gallery : [p.image];
-    gallery.innerHTML = photos.map((g, i) => {
-      const imgSrc = getPhotoSrc(g, p.image);
-      return `
-        <div class="thumb ${i === 0 ? 'active' : ''}" data-src="${root}${imgSrc}">
-          <img src="${root}${imgSrc}" alt="${p.name} view ${i + 1}">
-        </div>
-      `;
-    }).join('');
+    const photos = ((p.gallery && p.gallery.length) ? p.gallery : [p.image]).map(g => getPhotoSrc(g, p.image));
+    let current = 0;
 
-    mainImg.src = root + getPhotoSrc(photos[0], p.image);
-    mainImg.alt = p.name;
+    function goTo(index){
+      current = (index + photos.length) % photos.length;
+      mainImg.src = root + photos[current];
+      gallery.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === current));
+      if(dotsWrap) dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
 
+    gallery.innerHTML = photos.map((src, i) => `
+      <div class="thumb ${i === 0 ? 'active' : ''}" data-index="${i}">
+        <img src="${root}${src}" alt="${p.name} view ${i + 1}">
+      </div>
+    `).join('');
     gallery.querySelectorAll('.thumb').forEach(t => {
-      t.addEventListener('click', () => {
-        gallery.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
-        t.classList.add('active');
-        mainImg.src = t.dataset.src;
-      });
+      t.addEventListener('click', () => goTo(parseInt(t.dataset.index, 10)));
     });
+
+    if(photos.length > 1){
+      if(dotsWrap){
+        dotsWrap.innerHTML = photos.map((_, i) => `<div class="dot ${i===0?'active':''}"></div>`).join('');
+      }
+      if(prevBtn){ prevBtn.classList.remove('hidden'); prevBtn.addEventListener('click', () => goTo(current - 1)); }
+      if(nextBtn){ nextBtn.classList.remove('hidden'); nextBtn.addEventListener('click', () => goTo(current + 1)); }
+
+      if(frame){
+        let touchStartX = null;
+        frame.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        frame.addEventListener('touchend', (e) => {
+          if(touchStartX === null) return;
+          const delta = e.changedTouches[0].clientX - touchStartX;
+          if(Math.abs(delta) > 40){
+            delta < 0 ? goTo(current + 1) : goTo(current - 1);
+          }
+          touchStartX = null;
+        }, { passive: true });
+
+        frame.setAttribute('tabindex', '0');
+        frame.addEventListener('keydown', (e) => {
+          if(e.key === 'ArrowLeft') goTo(current - 1);
+          if(e.key === 'ArrowRight') goTo(current + 1);
+        });
+      }
+    } else {
+      if(prevBtn) prevBtn.classList.add('hidden');
+      if(nextBtn) nextBtn.classList.add('hidden');
+    }
+
+    goTo(0);
 
     const swatchWrap = document.getElementById('pcSwatches');
     if(swatchWrap && swatchWrap.parentElement) swatchWrap.parentElement.style.display = 'none';
