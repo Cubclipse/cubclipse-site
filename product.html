@@ -52,7 +52,14 @@
     <div class="product-card">
       <div class="pc-media">
         <div class="pc-media-frame">
+          <button class="pc-arrow prev" id="pcPrev" aria-label="Previous photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
           <img id="productImg" src="" alt="">
+          <button class="pc-arrow next" id="pcNext" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="pc-dots" id="pcDots"></div>
         </div>
         <div class="pc-gallery" id="pcGallery"><!-- filled by catalog.js --></div>
       </div>
