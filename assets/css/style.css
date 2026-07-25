@@ -256,7 +256,7 @@ footer{background:var(--black); color:#a49c8a; padding:70px 0 30px;}
 .foot-col a{display:block; font-size:0.88rem; color:#a49c8a; margin-bottom:10px; transition:color .25s;}
 .foot-col a:hover{color:var(--cream);}
 .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:26px; flex-wrap:wrap; gap:14px; font-size:0.78rem;}
-.foot-social{display:flex; gap:16px;}
+.foot-social{display:flex; gap:16px; flex-wrap:wrap;}
 .foot-social a{width:34px; height:34px; border:1px solid rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:border-color .3s, color .3s;}
 .foot-social a:hover{border-color:var(--gold); color:var(--gold);}
 .foot-social svg{width:15px; height:15px;}
