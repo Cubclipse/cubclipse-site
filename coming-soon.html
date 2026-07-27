@@ -44,11 +44,7 @@
   </div>
   <p class="hero-tagline">A quiet corner for the ones who curl up before they leap. We're still curling this den into shape — leave your email and be the first in when we open.</p>
 
-  <form class="news-form" id="csForm" style="margin-top:34px; border-bottom-color:var(--line-gold);">
-    <input type="email" placeholder="your@email.com" required style="color:var(--cream-2);">
-    <button type="submit" style="color:var(--gold);">Notify Me</button>
-  </form>
-  <div class="news-msg" id="csMsg" style="color:var(--gold-pale);">You're on the list — we'll email you the moment it drops. 🦊</div>
+  <div style="text-align: left; margin-top:34px;" class="sender-form-field" data-sender-form-id="e73ZBw"></div>
 
   <a href="https://www.instagram.com/cubclipse" class="follow-handle" style="margin-top:40px;" target="_blank" rel="noopener">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
@@ -65,11 +61,6 @@
     s.style.opacity = (Math.random()*0.5+0.1).toFixed(2);
     starsWrap.appendChild(s);
   }
-  document.getElementById('csForm').addEventListener('submit', (e)=>{
-    e.preventDefault();
-    document.getElementById('csMsg').classList.add('show');
-    e.target.reset();
-  });
 </script>
 
 </body>
