@@ -122,3 +122,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+/* ---------- Coming Soon gate — checks data/settings.json on every page ---------- */
+(function(){
+  const root = (typeof CATALOG_ROOT !== 'undefined') ? CATALOG_ROOT : '';
+  fetch(root + 'data/settings.json')
+    .then(r => r.ok ? r.json() : { comingSoon: false })
+    .then(s => {
+      const onComingSoonPage = window.location.pathname.includes('coming-soon');
+      if (s.comingSoon && !onComingSoonPage) {
+        window.location.href = root + 'coming-soon.html';
+      }
+    })
+    .catch(() => {});
+})();
