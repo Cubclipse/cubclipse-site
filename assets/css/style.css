@@ -235,8 +235,9 @@ nav.on-light{background:rgba(13,12,11,0.92); backdrop-filter:blur(10px);}
 /* NEWSLETTER (shared) */
 .news{padding:110px 0; background:var(--cream-2);}
 .news-inner{max-width:560px; margin:0 auto; text-align:center;}
-.news h2{font-size:clamp(2rem,3.6vw,2.6rem); font-style:italic; margin-top:14px;}
-.news p{color:var(--ink-soft); font-weight:300; margin-top:14px; font-size:0.98rem;}
+.news h2{font-size:clamp(2rem,3.6vw,2.6rem); font-style:italic; margin-top:14px; color:var(--ink) !important;}
+.news p{color:var(--ink-soft) !important; font-weight:300; margin-top:14px; font-size:0.98rem;}
+.news .eyebrow{color:var(--gold-deep) !important;}
 .news-form{margin-top:34px; display:flex; gap:0; border-bottom:1px solid var(--ink); max-width:420px; margin-left:auto; margin-right:auto;}
 .news-form input{flex:1; background:none; border:none; padding:14px 6px; font-family:'Jost'; font-size:0.95rem; color:var(--ink); outline:none;}
 .news-form input::placeholder{color:#9a927e;}
