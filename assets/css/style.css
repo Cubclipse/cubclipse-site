@@ -340,6 +340,7 @@ footer{background:var(--black); color:#a49c8a; padding:70px 0 30px;}
   letter-spacing:0.04em !important;
   text-decoration:none !important;
   transition:border-color .3s, background .3s, transform .3s !important;
+  margin-top:18px !important;
 }
 .follow-handle:hover{
   border-color:var(--gold) !important;
